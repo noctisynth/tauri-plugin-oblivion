@@ -1,0 +1,19 @@
+[package]
+name = "tauri-plugin-oblivion"
+version = "0.0.0"
+authors = [ "You" ]
+description = ""
+edition = "2021"
+rust-version = "1.70"
+exclude = ["/examples", "/webview-dist", "/webview-src", "/node_modules"]
+links = "tauri-plugin-oblivion"
+
+[dependencies]
+tauri = { version = "2.0.0-beta.19" }
+serde = "1.0"
+thiserror = "1.0"
+oblivion = { path = "./oblivion" }
+tokio = { version = "1.37.0", features = ["sync"] }
+
+[build-dependencies]
+tauri-plugin = { version = "2.0.0-beta.15", features = ["build"] }
