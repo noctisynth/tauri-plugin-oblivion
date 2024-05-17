@@ -9,6 +9,12 @@ pub enum Error {
     #[cfg(mobile)]
     #[error(transparent)]
     PluginInvoke(#[from] tauri::plugin::mobile::PluginInvokeError),
+    #[error("Instance with uuid {0} is not found")]
+    InstanceNotFound(String),
+    #[error(transparent)]
+    Oblivion(#[from] oblivion::exceptions::Exception),
+    #[error(transparent)]
+    Anyhow(#[from] anyhow::Error),
 }
 
 impl Serialize for Error {

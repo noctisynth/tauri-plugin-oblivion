@@ -25,8 +25,19 @@ use desktop::Oblivion;
 #[cfg(mobile)]
 use mobile::Oblivion;
 
+pub(crate) struct ClientStore {
+    pub(crate) client: Client,
+    pub(crate) entrance: String,
+}
+
+impl ClientStore {
+    pub fn new(client: Client, entrance: String) -> Self {
+        Self { client, entrance }
+    }
+}
+
 #[derive(Default)]
-struct Connections(Mutex<HashMap<String, Client>>);
+struct Connections(Mutex<HashMap<String, ClientStore>>);
 
 /// Extensions to [`tauri::App`], [`tauri::AppHandle`] and [`tauri::Window`] to access the oblivion APIs.
 pub trait OblivionExt<R: Runtime> {
@@ -42,7 +53,13 @@ impl<R: Runtime, T: Manager<R>> crate::OblivionExt<R> for T {
 /// Initializes the plugin.
 pub fn init<R: Runtime>() -> TauriPlugin<R> {
     Builder::new("oblivion")
-        .invoke_handler(tauri::generate_handler![commands::connect])
+        .invoke_handler(tauri::generate_handler![
+            commands::connect,
+            commands::close,
+            commands::send_json,
+            commands::recv,
+            commands::entrance
+        ])
         .setup(|app, api| {
             #[cfg(mobile)]
             let oblivion = mobile::init(app, api)?;
