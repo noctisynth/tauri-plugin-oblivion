@@ -86,6 +86,14 @@ class Client {
     });
     return new Response(result);
   }
+
+  get connection_id(): string {
+    if (!this.uuid)
+      throw new Error(
+        "Client may not connected yet, or this caused by an internal error"
+      );
+    return this.uuid;
+  }
 }
 
 export async function connect(entrance: string): Promise<Client> {
