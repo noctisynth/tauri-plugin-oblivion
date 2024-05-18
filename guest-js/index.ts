@@ -40,6 +40,7 @@ class Response implements ResponseData {
 }
 
 class Client {
+  connected: boolean = false;
   closed: boolean = false;
 
   constructor(public uuid: string | null, public entrance: string) {
@@ -48,6 +49,8 @@ class Client {
   }
 
   async connect(entrance: string | null = null): Promise<void> {
+    if (this.connected) throw new Error("Client is already connected");
+    if (this.closed) throw new Error("Client is already closed");
     if (!entrance && !this.entrance) {
       throw new Error("An oblivion entrance is required");
     }
@@ -55,14 +58,19 @@ class Client {
       entrance: entrance || this.entrance,
     });
     this.uuid = result.uuid;
+    this.connected = true;
   }
 
   async close(): Promise<void> {
+    if (!this.connected) throw new Error("Client is not connected");
+    if (this.closed) throw new Error("Client is already closed");
     await invoke("plugin:oblivion|close", { uuid: this.uuid });
     this.closed = true;
   }
 
   async send_json(data: any): Promise<boolean> {
+    if (!this.connected) throw new Error("Client is not connected");
+    if (this.closed) throw new Error("Client is already closed");
     const result: boolean = await invoke("plugin:oblivion|send_json", {
       uuid: this.uuid,
       data,
@@ -71,6 +79,8 @@ class Client {
   }
 
   async recv(): Promise<Response> {
+    if (!this.connected) throw new Error("Client is not connected");
+    if (this.closed) throw new Error("Client is already closed");
     const result: ResponseData = await invoke("plugin:oblivion|recv", {
       uuid: this.uuid,
     });
