@@ -1891,6 +1891,7 @@ dependencies = [
  "regex",
  "ring",
  "scrypt",
+ "serde",
  "serde_json",
  "sha2",
  "thiserror",
@@ -3169,14 +3170,16 @@ dependencies = [
 
 [[package]]
 name = "tauri-plugin-oblivion"
-version = "0.0.0"
+version = "0.1.0"
 dependencies = [
+ "anyhow",
  "oblivion",
  "serde",
  "tauri",
  "tauri-plugin",
  "thiserror",
  "tokio",
+ "uuid",
 ]
 
 [[package]]
