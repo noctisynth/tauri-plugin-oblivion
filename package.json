@@ -1,8 +1,8 @@
 {
   "name": "tauri-plugin-oblivion-api",
-  "version": "0.0.0",
-  "author": "You",
-  "description": "",
+  "version": "0.1.0",
+  "author": "苏向夜 <fu050409@163.com>",
+  "description": "Tauri plugin for oblivion",
   "type": "module",
   "types": "./dist-js/index.d.ts",
   "main": "./dist-js/index.cjs",
@@ -18,8 +18,8 @@
   ],
   "scripts": {
     "build": "rollup -c",
-    "prepublishOnly": "yarn build",
-    "pretest": "yarn build"
+    "prepublishOnly": "pnpm build",
+    "pretest": "pnpm build"
   },
   "dependencies": {
     "@tauri-apps/api": ">=2.0.0-beta.6"
