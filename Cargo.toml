@@ -16,10 +16,10 @@ links = "tauri-plugin-oblivion"
 tauri = { version = "2.0.0-beta.19" }
 serde = "1.0"
 thiserror = "1.0"
-oblivion = { path = "./oblivion", features = ["serde"] }
 tokio = { version = "1.37.0", features = ["sync"] }
 uuid = { version = "1.8.0", features = ["v4"] }
 anyhow = "1.0.83"
+oblivion = { version = "2.1.0", features = ["serde"] }
 
 [build-dependencies]
 tauri-plugin = { version = "2.0.0-beta.15", features = ["build"] }

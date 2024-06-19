@@ -1879,6 +1879,8 @@ dependencies = [
 [[package]]
 name = "oblivion"
 version = "2.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6a5a68aa4746aaff4593144276057de1f43139203d191e73ef0d11ecc668b628"
 dependencies = [
  "anyhow",
  "chrono",
@@ -1894,6 +1896,7 @@ dependencies = [
  "serde",
  "serde_json",
  "sha2",
+ "socket2",
  "thiserror",
  "tokio",
 ]
@@ -1901,6 +1904,8 @@ dependencies = [
 [[package]]
 name = "oblivion-codegen"
 version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1315663119a1ce10f1dbb9ffd5f128827e02c7a53ba7f3f76f6e61196048575f"
 dependencies = [
  "futures",
  "proc-macro2",
